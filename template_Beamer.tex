@@ -1,4 +1,4 @@
-\documentclass[12pt]{beamer} % Changed to 24pt for normal text
+\documentclass[12pt,notes]{beamer} % Changed to 24pt for normal text
 \usetheme{default} % Using the default theme as a base
 
 % Load xcolor for defining custom colors
@@ -52,6 +52,26 @@
 	\fi%
 }
 
+% --- Page Numbering Settings ---
+% Set the color for the page number (if not already set or to override)
+\setbeamercolor{page number in head/foot}{fg=mywhite}
+
+% Customize the footline to display page numbers starting from 1 on the second slide
+\setbeamertemplate{footline}{%
+  \ifnum\value{framenumber}>1% Only show after the first frame
+    \hfill% Push page number to the right
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    \the\numexpr\value{framenumber}-1\relax% Display (current frame number - 1)
+    \hspace*{2ex}% Add some space after the page number
+    \vspace{2ex}
+  \fi%
+}
+
+% Optional: If you want to remove the default navigation symbols (like arrows, etc.)
+% \setbeamertemplate{navigation symbols}{}
+
+
 % --- Presentation Metadata ---
 \title{Beamer Template with Custom Styling}
 \author{TeXstudio Team (Enhanced)}
@@ -69,7 +89,7 @@
 	
 	% --- Content Frame 1 ---
 	\begin{frame}
-		\frametitle{First Content Frame Title}
+		\frametitle{First Content Frame Title}\note{note test}
 		This is some sample text on the black background.
 		\begin{itemize}
 			\item Item 1 will be in white.
