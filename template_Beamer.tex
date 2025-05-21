@@ -6,10 +6,13 @@
 \usepackage{graphicx}
 \usepackage[T1]{fontenc}
 
+
 % Define a gold color
 \definecolor{mygold}{RGB}{190,157,91} % A common shade of gold
 \definecolor{bgblack}{RGB}{47,47,47}
 \definecolor{mywhite}{RGB}{245,245,245}
+\definecolor{mygray}{RGB}{219, 214,202}
+\definecolor{myred}{RGB}{161, 57, 49}
 
 % --- Global Color Settings ---
 % Set the overall background of the slide canvas to black
@@ -18,9 +21,18 @@
 % Set normal text to be mywhite on a bgblack background
 \setbeamercolor{normal text}{fg=mywhite,bg=bgblack} % Changed fg to mywhite
 
-% Set the frame title text color to mywhite.
 \setbeamercolor{frametitle}{fg=mywhite}
-\setbeamercolor{title}{fg=mywhite} % Change mygold to any color you like (e.g., red, blue, or another defined color)
+\setbeamercolor{title}{fg=mywhite} 
+
+\setbeamercolor{caption name}{fg=mywhite}
+\setbeamercolor{itemize item}{fg=mygray}
+\setbeamercolor{enumerate item}{fg=mygray}
+
+\setbeamercolor{bibliography item}{fg=mywhite}          % 例如文献编号 [1]
+\setbeamercolor{bibliography entry author}{fg=mywhite}  % 作者名
+\setbeamercolor{bibliography entry title}{fg=mywhite}   % 文献标题 (您提到已是白色，为保险起见设置)
+\setbeamercolor{bibliography entry location}{fg=mywhite} % 发表位置 (如期刊名、出版社)
+\setbeamercolor{bibliography entry note}{fg=mywhite}    % 其他注释 (如年份、卷号、页码、DOI、URL文本)
 
 % --- Font Size Settings ---
 % Set frame title font size to 36pt (baselineskip 43pt)
@@ -29,10 +41,8 @@
 
 % --- Customize the Frametitle Template ---
 \setbeamertemplate{frametitle}{%
-	\ifx\insertframetitle\@empty\else % Only render if a \frametitle is provided
+	\ifx\insertframetitle\@empty\else 
 	\nointerlineskip% Prevents some unwanted vertical skips
-	% Add vertical space to push the title down.
-	% Adjust the 0.15\textheight value if needed with new font sizes.
 	\vspace*{0.15\textheight} % This might need tweaking due to larger title font
 	
 	\begin{center} % Center the title and the line
@@ -69,12 +79,21 @@
 }
 
 % Optional: If you want to remove the default navigation symbols (like arrows, etc.)
-% \setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{navigation symbols}{}
 
 
 %\setbeameroption{hide notes} % Only slides
 %\setbeameroption{show only notes} % Only notes
 \setbeameroption{show notes on second screen=right} % Both
+
+
+
+
+\usepackage{cite}
+% Removes icon in bibliography
+\setbeamertemplate{bibliography item}[text]
+
+
 
 % --- Presentation Metadata ---
 \title{Beamer Template with Custom Styling}
@@ -83,17 +102,15 @@
 
 \begin{document}
 	
-	% --- Title Page ---
-	% The [plain] option is often used for title pages.
-	% It typically removes headers/footers and our custom frametitle template
-	% will not be applied here, allowing \maketitle to format the title page.
 	\begin{frame}[plain]
 		\maketitle 
 	\end{frame}
 	
 	% --- Content Frame 1 ---
 	\begin{frame}
-		\frametitle{First Content Frame Title}\note{note test}
+		\frametitle{First Content Frame Title}
+        \note[item]{\large{Welcome to the talk!}}
+        \note[item]{As you can see, this slidedeck is a work in progress.}
 		This is some sample text on the black background.
 		\begin{itemize}
 			\item Item 1 will be in white.
@@ -118,20 +135,10 @@
 		\frametitle{Highlighting Key Information} % You can change this title
 		
 		On this slide, we will demonstrate how to make certain words stand out.
-		You can use \textcolor{red}{red characters} for emphasis on specific terms like \textcolor{red}{important}.
+		You can use red characters for emphasis on specific terms like important.
 		
-		For a stronger visual cue, you can place keywords within a \colorbox{red}{red block}.
-		Notice that the text color inside the red block will be your default text color (`mywhite`), which provides good contrast. For example, this is a \colorbox{red}{critical point}.
-		
-		You can combine these techniques:
-		\begin{itemize}
-			\item Emphasize a \textcolor{red}{single word} with color.
-			\item Highlight a \colorbox{red}{short phrase} using a block.
-			\item You can even put \textbf{\colorbox{red}{bold text in a block}}.
-			\item Or have a \textcolor{red}{\textbf{bold red word}}.
-		\end{itemize}
-		
-		
+		For a stronger visual cue, you can place keywords within a \colorbox{myred}{red block}.
+		Notice that the text color inside the red block will be your default text color (`mywhite`), which provides good contrast. For example, this is a \colorbox{myred}{critical point}.
 	\end{frame}
 	
 	
@@ -139,7 +146,7 @@
 	\begin{frame}
 		This frame intentionally has no \texttt{\textbackslash frametitle}.
 		Therefore, no title or golden line should appear at the top.
-		Only the main content with white text on a black background.
+		Only the main content with white text on a black background\cite{shamir2010learning}.
 	\end{frame}
 	
 	% --- Frame with Figure on Left and Text on Right ---
@@ -152,16 +159,11 @@
 			% Left Column for the Figure
 			\begin{column}{0.50\textwidth} % Adjust width as needed (e.g., 0.45\textwidth)
 				\centering % Optional: centers the figure in the column
-				% Replace 'your_figure_filename.png' with the actual path to your image file.
-				% Common image formats are .png, .jpg, .pdf, .eps.
-				% Adjust 'width=\linewidth' to scale the image within the column.
-				\includegraphics[width=0.8\linewidth]{dikaer.jpg}
-				
 				% If you want a caption for your figure, you can use the figure environment:
-				% \begin{figure}
-					%     \includegraphics[width=\linewidth]{your_figure_filename.png}
-					%     \caption{This is a caption for the figure.}
-					% \end{figure}
+				\begin{figure}
+				    \includegraphics[width=0.8\linewidth]{dikaer.jpg}
+					%\caption{This is a caption for the figure.}
+				\end{figure}
 			\end{column}
 			
 			% Right Column for the Text
@@ -178,5 +180,11 @@
 			
 		\end{columns}
 	\end{frame}
+
+    \begin{frame}[allowframebreaks]{References}
+    	\bibliographystyle{plain}
+    	%\bibliography{mybeamer} also works
+    	\bibliography{./template_Beamer.bib}
+    \end{frame}
 	
 \end{document}
