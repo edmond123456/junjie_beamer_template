@@ -4,7 +4,7 @@
 % Load xcolor for defining custom colors
 \usepackage{xcolor}
 \usepackage{graphicx}
-
+\usepackage[T1]{fontenc}
 
 % Define a gold color
 \definecolor{mygold}{RGB}{190,157,91} % A common shade of gold
@@ -126,12 +126,12 @@
 		\begin{columns}[T] % The [T] option aligns the top of the columns
 			
 			% Left Column for the Figure
-			\begin{column}{0.48\textwidth} % Adjust width as needed (e.g., 0.45\textwidth)
+			\begin{column}{0.50\textwidth} % Adjust width as needed (e.g., 0.45\textwidth)
 				\centering % Optional: centers the figure in the column
 				% Replace 'your_figure_filename.png' with the actual path to your image file.
 				% Common image formats are .png, .jpg, .pdf, .eps.
 				% Adjust 'width=\linewidth' to scale the image within the column.
-				\includegraphics[width=\linewidth]{dikaer.jpg}
+				\includegraphics[width=0.8\linewidth]{dikaer.jpg}
 				
 				% If you want a caption for your figure, you can use the figure environment:
 				% \begin{figure}
@@ -141,7 +141,7 @@
 			\end{column}
 			
 			% Right Column for the Text
-			\begin{column}{0.48\textwidth} % Adjust width as needed (e.g., 0.45\textwidth)
+			\begin{column}{0.50\textwidth} % Adjust width as needed (e.g., 0.45\textwidth)
 				This is where your descriptive text will go.
 				You can use standard LaTeX formatting here.
 				\begin{itemize}
